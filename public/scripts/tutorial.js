@@ -57,11 +57,31 @@ var CommentList = React.createClass({
 });
 
 var CommentForm = React.createClass({
+  handleSubmit: function(e) {
+    e.preventDefault;
+
+    // get the values from the form
+    var author = this.refs.author.getDOMNode().value.trim();
+    var text = this.refs.text.getDOMNode().value.trim();
+    if (!text || !author) {
+      return;
+    }
+
+    // Todo: send request to the server
+
+    // clear the values from the form
+    this.refs.author.getDOMNode().value = '';
+    this.refs.text.getDOMNode().value = '';
+  },
   render: function() {
     return(
-      <div className="commentForm">
-        Hello, world! I am a CommentForm.
-      </div>
+      // assign a name to a child component using the ref attribute
+      // use this.refs to reference those components
+      <form className="commentForm">
+        <input type="text" placeholder="Your name" ref="author" />
+        <input type="text" placeholder="Say something..." ref="text" />
+        <input type="submit" value="Post" />
+      </form>
     );
   }
 });
