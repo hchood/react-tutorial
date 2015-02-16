@@ -1,8 +1,3 @@
-var data = [
-  {author: "Pete Hunt", text: "This is one comment"},
-  {author: "Jordan Walke", text: "This is *another* comment"}
-];
-
 var converter = new Showdown.converter();
 
 var CommentBox = React.createClass({
