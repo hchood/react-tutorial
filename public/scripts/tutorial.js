@@ -81,7 +81,8 @@ var CommentForm = React.createClass({
     return(
       // assign a name to a child component using the ref attribute
       // use this.refs to reference those components
-      <form className="commentForm">
+      // also tell form what function to call onSubmit
+      <form className="commentForm" onSubmit={this.handleSubmit}>
         <input type="text" placeholder="Your name" ref="author" />
         <input type="text" placeholder="Say something..." ref="text" />
         <input type="submit" value="Post" />
