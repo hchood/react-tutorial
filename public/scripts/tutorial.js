@@ -14,7 +14,19 @@ var CommentBox = React.createClass({
     });
   },
   handleCommentSubmit: function(comment) {
-    // Todo: submit to the server & refresh the list of comments
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      type: 'POST',
+      data: comment,
+      success: function(data) {
+        // returns all the comments - see server.rb
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
   },
   getInitialState: function() {
     return {data: []};
@@ -65,12 +77,10 @@ var CommentForm = React.createClass({
       return;
     }
 
-    // Todo: send request to the server
-
     // calls the callback that was passed into the CommentForm:
     // <CommentForm onCommentSubmit={this.handleCommentSubmit} />
     // which calls the function handleCommentSubmit on the CommentBox,
-    // reloading the comments
+    // submitting the new comment and reloading comments
     this.props.onCommentSubmit({author: author, text: text})
 
     // clear the values from the form
