@@ -72,6 +72,12 @@ var CommentForm = React.createClass({
 
     // Todo: send request to the server
 
+    // calls the callback that was passed into the CommentForm:
+    // <CommentForm onCommentSubmit={this.handleCommentSubmit} />
+    // which calls the function handleCommentSubmit on the CommentBox,
+    // reloading the comments
+    this.props.onCommentSubmit({author: author, text: text})
+
     // clear the values from the form
     this.refs.author.getDOMNode().value = '';
     this.refs.text.getDOMNode().value = '';
